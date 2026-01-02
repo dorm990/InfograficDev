@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Заявка — Лев</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root{
+      --bg1:#0a0c1a; --bg2:#1b1238;
+      --card: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.10);
+      --text:#f2f5ff; --muted:rgba(242,245,255,.72);
+      --a:#786eff; --b:#78f0aa; --warn:#ffd07a;
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(900px 500px at 70% 10%, rgba(120,110,255,.25), transparent 60%),
+                  radial-gradient(800px 400px at 20% 90%, rgba(120,240,170,.18), transparent 60%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      padding:18px;
+    }
+    .wrap{max-width:720px;margin:0 auto}
+    .hero{
+      padding:16px 16px 14px;
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;inset:0;
+      background: linear-gradient(90deg, rgba(120,110,255,.65), rgba(120,240,170,.35));
+      opacity:.12;
+      pointer-events:none;
+    }
+    .topline{
+      display:flex;gap:12px;align-items:center;justify-content:space-between;
+      position:relative;
+    }
+    .brand{
+      display:flex;gap:10px;align-items:center;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .badge{
+      width:34px;height:34px;border-radius:12px;
+      display:grid;place-items:center;
+      background: rgba(120,110,255,.18);
+      border:1px solid rgba(120,110,255,.35);
+    }
+    .pill{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,208,122,.35);
+      background: rgba(255,208,122,.10);
+      color: var(--warn);
+      font-weight:700;
+      position:relative;
+    }
+    h1{margin:14px 0 6px;font-size:22px;line-height:1.15;position:relative}
+    p{margin:0;color:var(--muted);font-size:13.5px;position:relative}
+
+    .grid{display:grid;gap:12px;margin-top:14px}
+    .card{
+      border:1px solid var(--stroke);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding:14px;
+    }
+    label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px}
+    select, input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(10,12,26,.35);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .hint{font-size:12px;color:rgba(242,245,255,.55);margin-top:8px}
+    .btn{
+      width:100%;
+      padding:13px 14px;
+      border-radius:16px;
+      border:0;
+      font-weight:800;
+      cursor:pointer;
+      background: linear-gradient(90deg, var(--a), var(--b));
+      color:#0a0c1a;
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+    }
+    .btn:active{transform: translateY(1px)}
+    .mini{
+      margin-top:10px;
+      display:flex;gap:10px;flex-wrap:wrap;
+    }
+    .chip{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(242,245,255,.78);
+    }
+    .ok{
+      display:none;
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(120,240,170,.30);
+      background: rgba(120,240,170,.10);
+      color: rgba(120,240,170,.95);
+      font-weight:700;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="topline">
+        <div class="brand">
+          <div class="badge">⚡</div>
+          <div>Лев — Дизайн и Разработка</div>
+        </div>
+        <div class="pill">Сначала работа → потом оплата</div>
+      </div>
+      <h1>Оформи заявку за 1 минуту</h1>
+      <p>Выбери услугу, опиши задачу — я отвечу в Telegram и скажу сроки/варианты по бюджету.</p>
+      <div class="mini">
+        <div class="chip">Карточки WB/Ozon</div>
+        <div class="chip">Сайты</div>
+        <div class="chip">Боты</div>
+        <div class="chip">Mini App</div>
+        <div class="chip">Моб. приложения</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <label>Услуга</label>
+        <select id="service">
+          <option value="Карточки WB/Ozon">Карточки WB/Ozon</option>
+          <option value="Сайт / лендинг">Сайт / лендинг</option>
+          <option value="Telegram-бот">Telegram-бот</option>
+          <option value="Mini App">Mini App</option>
+          <option value="Моб. приложение">Моб. приложение</option>
+          <option value="Другое">Другое</option>
+        </select>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label>Дедлайн (необязательно)</label>
+            <input id="deadline" placeholder="Например: до пятницы / 10 января" />
+          </div>
+          <div>
+            <label>Бюджет (необязательно)</label>
+            <input id="budget" placeholder="Например: 3–5к / до 10к" />
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>Описание задачи</label>
+          <textarea id="desc" placeholder="Что нужно сделать? Для кого? Ссылки/референсы? Что важно на 1 экране?"></textarea>
+          <div class="hint">Совет: добавь ссылку на товар/магазин и 3–5 преимуществ, которые важно подчеркнуть.</div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>Контакт для связи</label>
+          <input id="contact" placeholder="Например: связь через Telegram / телефон / e-mail" />
+          <div class="hint">Если ничего не укажешь — я напишу тебе прямо в Telegram.</div>
+        </div>
+
+        <div class="ok" id="ok">✅ Заявка отправлена! Сейчас можно закрыть окно.</div>
+
+        <button class="btn" style="margin-top:14px" id="send">Отправить заявку</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      tg.expand();
+      tg.MainButton?.hide();
+    }
+
+    const $ = (id) => document.getElementById(id);
+
+    function safe(v){ return (v || "").toString().trim(); }
+
+    $("send").addEventListener("click", () => {
+      const payload = {
+        service: safe($("service").value),
+        deadline: safe($("deadline").value),
+        budget: safe($("budget").value),
+        desc: safe($("desc").value),
+        contact: safe($("contact").value) || "Связь через Telegram",
+        policy: "Сначала показываю работу/черновик — затем оплата."
+      };
+
+      if (!payload.desc || payload.desc.length < 10) {
+        alert("Опиши задачу чуть подробнее (хотя бы 1–2 предложения).");
+        return;
+      }
+
+      const data = JSON.stringify(payload);
+
+      if (tg?.sendData) {
+        tg.sendData(data);
+        $("ok").style.display = "block";
+        setTimeout(() => tg.close(), 800);
+      } else {
+        alert("Открой мини-ап внутри Telegram, пожалуйста 🙂");
+      }
+    });
+  </script>
+</body>
+</html>
