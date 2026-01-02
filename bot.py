@@ -2,9 +2,9 @@ import os, json, time
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
-TOKEN = os.getenv("8400519045:AAGJXXV8pHqsELUJ9APQqlSmWl2eJglDIEY")                 # новый токен
-ADMIN_ID = int(os.getenv("7236376615", "0"))     # 7236376615
-WEBAPP_URL = os.getenv("https://dorm990.github.io/InfograficDev/", "")       # ссылка GitHub Pages на мини-ап
+TOKEN = os.getenv("8400519045:AAGJXXV8pHqsELUJ9APQqlSmWl2eJglDIEY")                 # имя переменной
+ADMIN_ID = int(os.getenv("7236376615", "0"))     # имя переменной
+WEBAPP_URL = os.getenv("https://dorm990.github.io/InfograficDev/", "")       # имя переменной
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -398,5 +398,6 @@ def steps(m):
 
 if __name__ == "__main__":
     bot.infinity_polling(skip_pending=True)
+
 
 
