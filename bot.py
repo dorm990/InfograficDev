@@ -4,7 +4,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
 TOKEN = os.getenv("8303453472:AAFAOf4mOFYS7EPkXiYcFTNFK4IQIb7NjDw")                 # новый токен
 ADMIN_ID = int(os.getenv("7236376615", "0"))     # 7236376615
-WEBAPP_URL = os.getenv("WEBAPP_URL", "")       # ссылка GitHub Pages на мини-ап
+WEBAPP_URL = os.getenv("https://dorm990.github.io/InfograficDev/", "")       # ссылка GitHub Pages на мини-ап
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -398,3 +398,4 @@ def steps(m):
 
 if __name__ == "__main__":
     bot.infinity_polling(skip_pending=True)
+
